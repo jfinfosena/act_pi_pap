@@ -1,23 +1,21 @@
 from pydantic import BaseModel, EmailStr
+from enum import Enum
+
+class UserRole(str, Enum):
+    admin = "admin"
+    user = "user"
 
 class UserBase(BaseModel):
     username: str
     email: EmailStr
+    role: UserRole = UserRole.user
 
 class UserCreate(UserBase):
     password: str
 
-class UserLogin(BaseModel):
-    username: str
-    password: str
-
-class UserResponse(UserBase):
+class UserRead(UserBase):
     id: int
-    role: str
+    is_active: bool
 
     class Config:
         orm_mode = True
-
-class Token(BaseModel):
-    access_token: str
-    token_type: str
