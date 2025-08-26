@@ -1,7 +1,6 @@
 from sqlalchemy import Column, Integer, String, Boolean, Enum
+from sqlalchemy.orm import relationship
 from src.core.database import Base
-reviews = relationship("Review", back_populates="user")
-reviews = relationship("Review", back_populates="product")
 import enum
 
 class UserRole(str, enum.Enum):
@@ -17,3 +16,6 @@ class User(Base):
     hashed_password = Column(String, nullable=False)
     is_active = Column(Boolean, default=True)
     role = Column(Enum(UserRole), default=UserRole.user)
+
+    # relación con reseñas
+    reviews = relationship("Review", back_populates="user")
