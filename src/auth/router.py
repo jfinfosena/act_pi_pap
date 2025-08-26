@@ -1,17 +1,16 @@
 from fastapi import APIRouter, Depends, HTTPException
+from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 from src.core.database import get_db
-from . import schemas, service
+from src.auth.service import authenticate_user, create_access_token
+from src.auth.schemas import Token
 
-router = APIRouter(prefix="/auth", tags=["auth"])
+router = APIRouter(prefix="/auth", tags=["Auth"])
 
-@router.post("/register", response_model=schemas.UserResponse)
-def register(user: schemas.UserCreate, db: Session = Depends(get_db)):
-    return service.create_user(db, user)
-
-@router.post("/login", response_model=schemas.Token)
-def login(user: schemas.UserLogin, db: Session = Depends(get_db)):
-    db_user = service.authenticate_user(db, user.username, user.password)
-    if not db_user:
+@router.post("/login", response_model=Token)
+def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
+    user = authenticate_user(db, form_data.username, form_data.password)
+    if not user:
         raise HTTPException(status_code=401, detail="Credenciales inválidas")
-    return service.login_user(db_user)
+    token = create_access_token({"sub": user.username})
+    return {"access_token": token, "token_type": "bearer"}

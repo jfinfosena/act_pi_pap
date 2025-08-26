@@ -1,11 +1,15 @@
 from logging.config import fileConfig
 from sqlalchemy import engine_from_config, pool
 from alembic import context
+
 from src.core.config import settings
 from src.core.database import Base
 
-# Importa tus modelos aquí para que Alembic los detecte
-from src.users.models import User 
+# 👇 importa tus modelos aquí
+from src.users.models import User
+from src.products.models import Product
+from src.reviews.models import Review
+from src.categories.models import Category
 
 # Configuración de logging
 config = context.config
