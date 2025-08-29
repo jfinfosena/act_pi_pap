@@ -9,7 +9,6 @@ from src.core.database import Base
 from src.users.models import User
 from src.products.models import Product
 from src.reviews.models import Review
-from src.categories.models import Category
 
 # Configuración de logging
 config = context.config
