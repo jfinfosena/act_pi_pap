@@ -1,0 +1,305 @@
+/* Reset y configuración básica */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Header con logos */
+body > div:first-child {
+  text-align: center;
+  margin-bottom: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+}
+
+body > div:first-child img {
+  width: 100px;
+  height: 100px;
+  vertical-align: middle;
+  border-radius: 50%;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+body > div:first-child img:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Título principal */
+h1 {
+  display: inline-block !important;
+  margin: 0 20px !important;
+  color: #fff;
+  font-size: 2.5rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  font-weight: 300;
+  vertical-align: middle;
+}
+
+/* Container para las secciones */
+body > div:not(:first-child) {
+  background: rgba(255, 255, 255, 0.95);
+  margin-bottom: 30px;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+body > div:not(:first-child):hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+/* Títulos de sección */
+h2 {
+  color: #4a5568;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  font-weight: 600;
+  border-bottom: 3px solid #667eea;
+  padding-bottom: 10px;
+  display: inline-block;
+}
+
+/* Botones */
+button {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  margin-bottom: 15px;
+  margin-right: 10px;
+}
+
+button:hover {
+  background: linear-gradient(45deg, #5a6fd8, #6a42a0);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(102, 126, 234, 0.4);
+}
+
+/* Formularios */
+form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Inputs */
+input[type="text"] {
+  flex: 1;
+  min-width: 200px;
+  padding: 12px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 25px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(5px);
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  background: rgba(255, 255, 255, 1);
+}
+
+input[type="text"]::placeholder {
+  color: #a0aec0;
+}
+
+/* Botones de formulario */
+form button {
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+/* Listas */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: #f8f9fa;
+  margin-bottom: 10px;
+  padding: 15px 20px;
+  border-radius: 10px;
+  border-left: 4px solid #667eea;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+li:hover {
+  background: #e3f2fd;
+  transform: translateX(10px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+li:nth-child(even) {
+  border-left-color: #764ba2;
+}
+
+li:nth-child(even):hover {
+  background: #f3e5f5;
+}
+
+/* Estados de carga */
+.loading {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  padding: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+  
+  h1 {
+    font-size: 2rem !important;
+    margin: 0 10px !important;
+  }
+  
+  body > div:first-child {
+    padding: 15px;
+  }
+  
+  body > div:not(:first-child) {
+    padding: 20px 15px;
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  form {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    min-width: unset;
+  }
+  
+  button, form button {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+  }
+  
+  li {
+    padding: 12px 15px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.6rem !important;
+    margin: 0 5px !important;
+  }
+  
+  h2 {
+    font-size: 1.3rem;
+  }
+  
+  body > div:not(:first-child) {
+    padding: 15px 10px;
+  }
+  
+  body > div:first-child img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* Animaciones para la carga de contenido */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+body > div:not(:first-child) {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Efectos adicionales para secciones */
+body > div:not(:first-child)::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #667eea, #764ba2, #667eea);
+  border-radius: 17px;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+body > div:not(:first-child):hover::before {
+  opacity: 0.3;
+}
+
+/* Efectos especiales para inputs con focus */
+input[type="text"]:focus {
+  animation: inputGlow 0.3s ease-out;
+}
+
+@keyframes inputGlow {
+  from {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  to {
+    transform: scale(1);
+  }
+}

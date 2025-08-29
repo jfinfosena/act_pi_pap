@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Frontend - FastAPI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div>
+    <img src="img/Exotico1.jpg" alt="Logo izquierdo" width="40" height="40">
+    <h1 style="display:inline-block; margin:0 20px;">Frontend para FastAPI</h1>
+    <img src="img/Exotico 2.jpg" alt="Logo derecho" width="40" height="40">
+  </div>
+
+  <!-- Usuarios -->
+  <div>
+    <h2>Usuarios</h2>
+    <button onclick="getUsers()">Cargar Usuarios</button>
+    <form onsubmit="createUser(event)">
+      <input type="text" id="username" placeholder="Nombre de usuario" required>
+      <button type="submit">Crear Usuario</button>
+    </form>
+    <ul id="userList"></ul>
+  </div>
+
+  <!-- Productos -->
+  <div>
+    <h2>Productos</h2>
+    <button onclick="getProducts()">Cargar Productos</button>
+    <form onsubmit="createProduct(event)">
+      <input type="text" id="productName" placeholder="Nombre del producto" required>
+      <button type="submit">Crear Producto</button>
+    </form>
+    <ul id="productList"></ul>
+  </div>
+
+  <!-- Categorías -->
+  <div>
+    <h2>Categorías</h2>
+    <button onclick="getCategories()">Cargar Categorías</button>
+    <ul id="categoryList"></ul>
+  </div>
+
+  <!-- Reseñas -->
+  <div>
+    <h2>Reseñas</h2>
+    <button onclick="getReviews()">Cargar Reseñas</button>
+    <ul id="reviewList"></ul>
+  </div>
+
+  <script>
+    const API_URL = "http://127.0.0.1:8000";
+
+    // -------- USUARIOS ----------
+    async function getUsers() {
+      let res = await fetch(`${API_URL}/users/`);
+      let data = await res.json();
+      let list = document.getElementById("userList");
+      list.innerHTML = "";
+      data.forEach(u => {
+        let li = document.createElement("li");
+        li.textContent = `ID: ${u.id} - Nombre: ${u.name}`;
+        list.appendChild(li);
+      });
+    }
+
+    async function createUser(event) {
+      event.preventDefault();
+      let name = document.getElementById("username").value;
+      let res = await fetch(`${API_URL}/users/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name })
+      });
+      if (res.ok) {
+        alert("Usuario creado ✅");
+        getUsers();
+      } else {
+        alert("Error al crear usuario ❌");
+      }
+    }
+
+    // -------- PRODUCTOS ----------
+    async function getProducts() {
+      let res = await fetch(`${API_URL}/products/`);
+      let data = await res.json();
+      let list = document.getElementById("productList");
+      list.innerHTML = "";
+      data.forEach(p => {
+        let li = document.createElement("li");
+        li.textContent = `ID: ${p.id} - Producto: ${p.name}`;
+        list.appendChild(li);
+      });
+    }
+
+    async function createProduct(event) {
+      event.preventDefault();
+      let name = document.getElementById("productName").value;
+      let res = await fetch(`${API_URL}/products/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name })
+      });
+      if (res.ok) {
+        alert("Producto creado ✅");
+        getProducts();
+      } else {
+        alert("Error al crear producto ❌");
+      }
+    }
+
+    // -------- CATEGORÍAS ----------
+    async function getCategories() {
+      let res = await fetch(`${API_URL}/categories/`);
+      let data = await res.json();
+      let list = document.getElementById("categoryList");
+      list.innerHTML = "";
+      data.forEach(c => {
+        let li = document.createElement("li");
+        li.textContent = `ID: ${c.id} - Categoría: ${c.name}`;
+        list.appendChild(li);
+      });
+    }
+
+    // -------- RESEÑAS ----------
+    async function getReviews() {
+      let res = await fetch(`${API_URL}/reviews/`);
+      let data = await res.json();
+      let list = document.getElementById("reviewList");
+      list.innerHTML = "";
+      data.forEach(r => {
+        let li = document.createElement("li");
+        li.textContent = `ID: ${r.id} - Reseña: ${r.comment}`;
+        list.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>
