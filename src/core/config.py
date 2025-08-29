@@ -1,6 +1,5 @@
 from pydantic_settings import BaseSettings
 
-
 class Settings(BaseSettings):
     PROJECT_NAME: str = "Proyecto Integrador FastAPI (Reseñas)"
     DATABASE_URL: str = "sqlite:///./app.db"
